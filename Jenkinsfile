@@ -20,18 +20,16 @@ pipeline {
         sh 'python -m pytest --junitxml=tests.xml -v tests/'
       }
     }
-    stage('Building image') {
-    agent none
+    stage('Build and deploy image') {
+    agent {
+      docker {
+        image 'docker:latest'
+        args '-u root:root'
+     }
+  }
       steps{
         script {
           dockerImage = docker.build registry + ":latest"
-        }
-      }
-    }
-    stage('Deploy Image') {
-    agent none
-      steps{
-        script {
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
