@@ -13,8 +13,13 @@ pipeline {
     }
     stage('Run unit tests') {
       steps {
-        sh 'python -m pytest -v tests/'
+        sh 'python -m pytest --junitxml=tests.xml -v tests/'
       }
     }
   }
+  post {
+        always {
+            junit '*.xml'
+        }
+    }
 }
