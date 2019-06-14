@@ -21,6 +21,7 @@ pipeline {
       }
     }
     stage('Building image') {
+    agent none
       steps{
         script {
           dockerImage = docker.build registry + ":latest"
@@ -28,6 +29,7 @@ pipeline {
       }
     }
     stage('Deploy Image') {
+    agent none
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
