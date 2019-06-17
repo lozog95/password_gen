@@ -5,6 +5,11 @@ environment {
   }
     agent none
     stages {
+        stage("set path") {
+            steps {
+                sh "export PATH=/usr/local/bin:${PATH}"
+            }
+        }
         stage("Init and test") {
             agent {
               docker {
