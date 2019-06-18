@@ -5,6 +5,11 @@ environment {
   }
     agent none
     stages {
+        stage("path"){
+            steps {
+                sh 'source /Users/lozog/.zshenv'
+            }
+        }
         stage("Init and test") {
             environment {
                 PATH = "$PATH:/usr/local/bin"
