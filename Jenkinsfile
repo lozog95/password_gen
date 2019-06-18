@@ -7,15 +7,7 @@ environment {
     label 'docker'
   }
     stages {
-        stage("path"){
-            steps {
-                sh 'source /Users/lozog/.zshenv'
-            }
-        }
         stage("Init and test") {
-            environment {
-                PATH = "$PATH:/usr/local/bin"
-            }
             agent {
               docker {
               image 'python:3.6.5-alpine'
@@ -41,10 +33,7 @@ environment {
             }
         }
         stage("Build and deploy"){
-        environment {
-                PATH = "$PATH:/usr/local/bin"
-            }
-            agent none
+            agent any
             stages {
                 stage('Build and deploy image') {
                     steps{
