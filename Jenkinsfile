@@ -3,7 +3,9 @@ environment {
     registry = "lozog95/pass_gen_service"
     registryCredential = 'dockerhub'
   }
-    agent none
+    agent {
+    label 'docker'
+  }
     stages {
         stage("path"){
             steps {
