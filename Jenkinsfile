@@ -7,14 +7,6 @@ environment {
     label 'docker'
   }
     stages {
-        stage("zsh") {
-            agent any
-            steps {
-                sh 'source ~/.zshrc'
-                sh "echo $PATH"
-            }
-        }
-
         stage("Init and test") {
             agent {
               docker {
@@ -42,20 +34,18 @@ environment {
         }
         stage("Build and deploy"){
             agent any
-            stages {
-                stage('Build and deploy image') {
-                    steps{
+            steps{
                 script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-        sh "kubectl set image deployment/password-service password-service=lozog95/pass-gen-service:${BUILD_NUMBER}"
-      }
-    }
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+                sh "kubectl set image deployment/password-service password-service=lozog95/pass-gen-service:${BUILD_NUMBER}"
             }
         }
+
+
     }
 }
 
