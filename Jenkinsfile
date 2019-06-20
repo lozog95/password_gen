@@ -13,8 +13,8 @@ environment {
                 sh 'source ~/.zshrc'
                 sh "echo $PATH"
             }
-            }
         }
+
         stage("Init and test") {
             agent {
               docker {
