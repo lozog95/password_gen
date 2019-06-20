@@ -7,7 +7,7 @@ environment {
     label 'docker'
   }
     stages {
-        stage("Init and test") {
+        stage("zsh") {
             agent any
             steps {
                 sh 'source ~/.zshrc'
