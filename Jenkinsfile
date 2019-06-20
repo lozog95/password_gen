@@ -8,6 +8,14 @@ environment {
   }
     stages {
         stage("Init and test") {
+            agent any
+            steps {
+                sh 'source ~/.zshrc'
+                sh "echo $PATH"
+            }
+            }
+        }
+        stage("Init and test") {
             agent {
               docker {
               image 'python:3.6.5-alpine'
