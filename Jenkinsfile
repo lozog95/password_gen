@@ -3,9 +3,7 @@ environment {
     registry = "lozog95/pass_gen_service"
     registryCredential = 'dockerhub'
   }
-    agent {
-    label 'docker'
-  }
+    agent any
     stages {
         stage("Init and test") {
             agent {
