@@ -39,7 +39,7 @@ environment {
                         dockerImage.push()
                     }
                 }
-                sh "docker service update --image lozog95/pass_gen_service:${BUILD_NUMBER} password-gen"
+                sh "docker service update --image lozog95/pass_gen_service:${BUILD_NUMBER} password-service"
 
             }
         }
