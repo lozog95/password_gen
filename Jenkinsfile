@@ -30,7 +30,7 @@ environment {
               }
             }
         }
-        stage("Build and deploy"){
+        stage("QA: Build and deploy"){
             agent any
             steps{
                 script {
@@ -39,11 +39,20 @@ environment {
                         dockerImage.push()
                     }
                 }
+                sh "docker service update --image lozog95/pass_gen_service:${BUILD_NUMBER} password-service-qa"
+
+            }
+        }
+        stage("PRD: Deploy"){
+            agent any
+            input {
+                message "Wykonac wdrozenie na produkcje?"
+            }
+            steps{
                 sh "docker service update --image lozog95/pass_gen_service:${BUILD_NUMBER} password-service"
 
             }
         }
-
 
     }
 }

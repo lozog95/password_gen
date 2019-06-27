@@ -26,7 +26,6 @@ class Generator():
         return ''.join(random.choice(password_base) for i in range(self.len))
 
 
-
 class Password(Resource):
     def get(self):
         return {'message': 'use POST request to generate password',

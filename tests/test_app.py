@@ -3,6 +3,13 @@ from app import Generator
 
 
 class TestGenerator():
+    def test_generator_constructor(self):
+        gen = Generator(12, True, True, True)
+        assert gen.len == 12
+        assert gen.special == True
+        assert gen.numbers == True
+        assert gen.capital == True
+
     def test_generate_only_lowercase(self):
         pwd = Generator(10, False, False, False).generate()
         print(pwd)
