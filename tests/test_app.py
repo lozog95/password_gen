@@ -1,7 +1,7 @@
 import string
 from app import Generator
 
-
+# testy
 class TestGenerator():
     def test_generator_constructor(self):
         gen = Generator(12, True, True, True)
