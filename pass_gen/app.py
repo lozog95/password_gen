@@ -2,7 +2,11 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 import string
 import random
+from datetime import datetime
 
+
+start_time = datetime.now()
+start_t=start_time.strftime('%m/%d/%Y : %H:%M')
 
 app = Flask(__name__)
 api = Api(app)
@@ -29,6 +33,7 @@ class Generator():
 class Password(Resource):
     def get(self):
         return {'message': 'use POST request to generate password',
+                'started': start_t,
                 'data': None}, 200
 
     def post(self):
